@@ -5,16 +5,21 @@
 
 int main (int argc, char* argv[])
 {
-        char* IP_address;
+        // Will contain the parameters
+        char* IP_address; 
         char* port;
         char* name;
         int ID_Sensor, Type_Sensor;
 
-        char http_address[250];
+        char http_address[250]; // buffer for the http request
 
+
+                // CURL Handlers
         CURL *curl;
         CURLcode res;
 
+
+                // Check correct use and update parameters
         if (argc != 6)
         {
                 printf("Use to create a sensor which type is included in the following list :\n \
@@ -40,28 +45,36 @@ int main (int argc, char* argv[])
                 ID_Sensor       = atoi(argv[5]);                
         }
 
-        sprintf(http_address, "http://%s:%s/json.htm?type=createvirtualsensor&idx=%d&sensorname=%s&sensortype=%d", IP_address, port, ID_Sensor, name, Type_Sensor);
-        printf("%s\n", http_address);
 
+
+                // Setting CURL Context
         curl_global_init(CURL_GLOBAL_ALL);
 
         curl = curl_easy_init();
         if (curl)
         {
+                        // Request 1 -> Add the requested device
+
+                sprintf(http_address, "http://%s:%s/json.htm?type=createvirtualsensor&idx=%d&sensorname=%s&sensortype=%d", IP_address, port, ID_Sensor, name, Type_Sensor);
                 curl_easy_setopt(curl, CURLOPT_URL, http_address);
                 res = curl_easy_perform(curl);
                 if(res != CURLE_OK)
-                        fprintf(stderr, "curl_easy_perform() failed: %s\n",
-                                curl_easy_strerror(res));
+                {
+                        fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
+                }
+                        
+
+                        // Request 2 -> List of all devices
 
                 sprintf(http_address, "http://%s:%s/json.htm?type=devices&filter=all&used=true&order=Name", IP_address, port);
-
                 curl_easy_setopt(curl, CURLOPT_URL, http_address);
                 res = curl_easy_perform(curl);
                 if(res != CURLE_OK)
-                        fprintf(stderr, "curl_easy_perform() failed: %s\n",
-                                curl_easy_strerror(res));                
-               
+                {
+                        fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
+                }
+
+                        // Cleaning curl context 
                 curl_easy_cleanup(curl);
         }
         curl_global_cleanup();
