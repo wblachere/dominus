@@ -2,7 +2,7 @@
 
 
 
-##createSensor.c
+## createSensor.c
 
 This code is designed to allow users to easily add sensors to a remote domoticz server.
 Use it as follows:
