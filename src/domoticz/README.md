@@ -7,7 +7,7 @@
 This code is designed to allow users to easily add sensors to a remote domoticz server.
 Use it as follows:
 
-$ ./create_sensor IP Port Sensor_type Sensor_name ID_Sensor
+    $ ./create_sensor IP Port Sensor_type Sensor_name ID_Sensor
 
 With:
 
