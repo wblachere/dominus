@@ -1,6 +1,6 @@
 # Prelude
 AC_PREREQ(2.4)
-AC_INIT([MyPackageName], [0.1], [blottiere.paul@gmail.com])
+AC_INIT([dominus], [0.1], [blottiere.paul@gmail.com])
 AC_CONFIG_SRCDIR([configure.ac])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([config])
@@ -14,8 +14,6 @@ LT_INIT
 AC_ENABLE_SHARED
 
 # check headers
-AC_CHECK_HEADER(sys/socket.h, [],
-                [AC_MSG_ERROR(["Couldn't find sys/socket.h"])])
 AC_CHECK_HEADER(curl/curl.h, [],
                 [AC_MSG_ERROR(["Couldn't find curl/curl.h"])])
 
