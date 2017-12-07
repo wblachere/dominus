@@ -28,4 +28,4 @@ RUN wget https://github.com/TilletJ/dominus/tree/dockerfile/.config
 RUN git config --global http.postBuffer 1048576000
 RUN make
 
-CMD ["bin/bash"]
+CMD ["/bin/bash"]
