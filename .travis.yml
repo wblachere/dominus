@@ -1,0 +1,12 @@
+language: c
+
+before_script:
+  - ./autogen.sh
+
+script:
+  - ./configure
+  - make
+
+notifications:
+    on_success: never
+    on_failure: never
