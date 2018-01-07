@@ -7,6 +7,7 @@ AC_CONFIG_AUX_DIR([config])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 AM_PROG_AR
 AC_PROG_CC
+AC_PROG_CXX
 AM_CONFIG_HEADER([config.h])
 
 # libtool init
