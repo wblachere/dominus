@@ -17,15 +17,18 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /root
 
-COPY buildroot-2017.08.tar.gz https://buildroot.org/downloads/buildroot-2017.08.tar.gz
+RUN wget https://buildroot.org/downloads/buildroot-2017.08.tar.gz
 RUN tar zxvf buildroot-2017.08.tar.gz
-COPY users.tables https://github.com/TilletJ/dominus/tree/dockerfile/users.tables
 
 WORKDIR /root/buildroot-2017.08
 
-RUN make raspberrypi3_defconfig
-COPY .config https://github.com/TilletJ/dominus/tree/dockerfile/.config
+COPY users.tables /root/buildroot-2017.08/users.tables
+COPY defconfig /root/buildroot-2017.08/configs/dominus_defconfig
+
 RUN git config --global http.postBuffer 1048576000
+RUN make dominus_defconfig
 RUN make
+
+RUN cd output && tar zcvf images.tar.gz images
 
 CMD ["/bin/bash"]
