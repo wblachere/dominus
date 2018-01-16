@@ -8,12 +8,27 @@
 
 using namespace std;
 
-int main (void)
+int main (int argc, char* argv[])
 {
 
-
-	string inputstate;
-	GPIOClass* gpio4 = new GPIOClass("4"); //create new GPIO object to be attached to  GPIO4
+	char* nbr="17";
+	if (argc != 3){
+	    std::cout << "Usage is -g <GPIO> \n";
+	    exit(0);
+	}
+	const char * options = "g:";
+	int option;
+	while((option = getopt(argc, argv, options)) != -1){
+	    switch(option){
+		case 'g':
+		    nbr = optarg;
+		    break;
+		case '?':
+		    fprintf(stderr, "Invalid option %c\n", optopt);
+		    exit(EXIT_FAILURE);
+		}
+	}
+	GPIOClass* gpio4 = new GPIOClass(nbr); //create new GPIO object to be attached to  GPIO4
 	gpio4->export_gpio(); //export GPIO4
 
 	cout << " GPIO pins exported" << endl;
