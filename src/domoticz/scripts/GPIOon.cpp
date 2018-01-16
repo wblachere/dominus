@@ -33,7 +33,7 @@ int main (int argc, char* argv[])
 
 	cout << " GPIO pins exported" << endl;
 
-	gpio4->setdir_gpio("in"); //GPIO4 set to output
+	gpio4->setdir_gpio("out"); //GPIO4 set to output
 
 	cout << " Set GPIO pin directions" << endl;
 
