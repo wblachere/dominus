@@ -49,7 +49,8 @@ Will launch the server for the GPIO17
 
 triggers on or off the GPIO, and shut down the server.
 
-
+## Version 5:
+Added init.d
 ## Authors :
 
 * **Hussam Al Hertani** - *Initial GPIO Class* - [halherta](https://github.com/halherta)
